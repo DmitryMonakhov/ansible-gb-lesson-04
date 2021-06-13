@@ -1,0 +1,4 @@
+---
+# vars file for http-server
+
+nginx-port: 9090

@@ -1,0 +1,33 @@
+---
+# tasks file for http-server
+#
+- name: Update the repository cache and update package "nginx" to latest version
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: Start nginx, if not running. Enable autostart
+  service:
+    name: nginx
+    state: started
+    enabled: yes 
+
+- name: Copy nginx default.conf
+  copy:
+    src: templates/conf/nginx/default
+    dest: /etc/nginx/sites-enabled/default
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify: Restart nginx
+
+#- name: Change port naumber in nginx.conf
+#  lineinfile:
+#    dest=/etc/nginx/sites-enabled/default
+#    regexp="^listen 80"
+#    line='listen 9090 default_server'
+#    state=present
+#    backup=yes
+#    backrefs=no
