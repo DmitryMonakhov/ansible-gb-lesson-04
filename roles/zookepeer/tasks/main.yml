@@ -1,0 +1,17 @@
+---
+# tasks file for zookepeer
+
+- name: Install pip
+  apt:
+    name: python-pip
+    state: present
+
+- name: Install docker-py
+  pip:
+    name: docker-py
+
+- name: Running the container
+  docker_container:
+    image: hello-world
+    path: docker
+    #    state: running
