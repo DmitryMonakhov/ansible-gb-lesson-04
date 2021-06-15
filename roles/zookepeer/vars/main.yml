@@ -1,2 +1,4 @@
 ---
 # vars file for zookepeer
+
+ansible_python_interpreter: /usr/bin/python3
